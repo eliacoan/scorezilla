@@ -1,0 +1,12 @@
+{
+  "name": "scorezilla",
+  "version": "0.1.0",
+  "private": true,
+  "scripts": {
+    "start": "netlify dev"
+  },
+  "dependencies": {
+    "node-fetch": "^2.6.7",
+    "dotenv": "^16.0.0"
+  }
+}
