@@ -137,5 +137,3 @@ Your API will be available at `https://<yoursite>.netlify.app/.netlify/functions
 - <b>Description:</b> Obtain a JWT token for anonymous authentication.
 - <b>Body:</b> None
 - <b>Response:</b> <code>200 OK</code> — <pre>{ "token": "...", "anonId": "..." }</pre>
-
-<span style="opacity:0;">jwt secret is 20251027</span>
