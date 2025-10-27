@@ -29,8 +29,23 @@
     <p>All requests require a <code>gameId</code>.</p>
   </div>
   <div class="section">
-    <h2>Quick Example</h2>
+    <h2>API Examples</h2>
+    <h3>GET (List Highscores)</h3>
     <pre>curl "https://&lt;yoursite&gt;.netlify.app/.netlify/functions/scores?gameId=game1&limit=5"</pre>
+    <h3>POST (Add Highscore)</h3>
+    <pre>curl -X POST -H "Content-Type: application/json" \
+  -d '{"gameId":"game1","name":"Alice","score":1234}' \
+  https://&lt;yoursite&gt;.netlify.app/.netlify/functions/scores</pre>
+    <h3>PUT (Update Highscore)</h3>
+    <pre>curl -X PUT -H "Content-Type: application/json" \
+  -d '{"gameId":"game1","id":"GUID","name":"Alice","score":1500}' \
+  https://&lt;yoursite&gt;.netlify.app/.netlify/functions/scores</pre>
+    <h3>DELETE (Remove Highscore)</h3>
+    <pre>curl -X DELETE "https://&lt;yoursite&gt;.netlify.app/.netlify/functions/scores?gameId=game1&id=GUID"</pre>
+    <h3>OPTIONS (Check Highscore Qualification)</h3>
+    <pre>curl -X OPTIONS -H "Content-Type: application/json" \
+  -d '{"gameId":"game1","score":1200}' \
+  https://&lt;yoursite&gt;.netlify.app/.netlify/functions/scores</pre>
   </div>
   <div class="section">
     <h2>Deploy Instructions</h2>
