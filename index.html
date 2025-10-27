@@ -1,0 +1,49 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <title>Scorezilla Highscore API</title>
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <style>
+    body { font-family: Arial, sans-serif; margin: 2em; background: #f9f9f9; }
+    h1 { color: #2c3e50; }
+    code, pre { background: #eee; padding: 2px 4px; border-radius: 3px; }
+    .section { margin-bottom: 2em; }
+  </style>
+</head>
+<body>
+  <h1>Scorezilla Highscore API</h1>
+  <div class="section">
+    <p>A free, serverless REST API for managing highscores for multiple games. Easily deployable on Netlify.</p>
+  </div>
+  <div class="section">
+    <h2>Endpoints</h2>
+    <ul>
+      <li><b>GET</b> - List top scores for a game</li>
+      <li><b>POST</b> - Add a new score</li>
+      <li><b>PUT</b> - Update an existing score</li>
+      <li><b>DELETE</b> - Remove a score</li>
+      <li><b>OPTIONS</b> - Check if a score qualifies as a highscore</li>
+    </ul>
+    <p>All endpoints: <code>/.netlify/functions/scores</code></p>
+    <p>All requests require a <code>gameId</code>.</p>
+  </div>
+  <div class="section">
+    <h2>Quick Example</h2>
+    <pre>curl "https://&lt;yoursite&gt;.netlify.app/.netlify/functions/scores?gameId=game1&limit=5"</pre>
+  </div>
+  <div class="section">
+    <h2>Deploy Instructions</h2>
+    <ol>
+      <li>Install Netlify CLI: <code>npm install -g netlify-cli</code></li>
+      <li>Link your project: <code>netlify init</code></li>
+      <li>Test locally: <code>netlify dev</code></li>
+      <li>Deploy: <code>netlify deploy --prod</code></li>
+    </ol>
+    <p>Your API will be available at <code>https://&lt;yoursite&gt;.netlify.app/.netlify/functions/scores</code></p>
+  </div>
+  <footer>
+    <p>Project: Scorezilla &mdash; <a href="https://github.com/">GitHub</a></p>
+  </footer>
+</body>
+</html>
