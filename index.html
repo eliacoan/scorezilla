@@ -6,34 +6,7 @@
     <title>Scorezilla Highscore API</title>
     <meta name="viewport" content="width=device-width, initial-scale=1">
     <link rel="icon" type="image/png" href="imgs/icon.png">
-    <style>
-        body {
-            font-family: Arial, sans-serif;
-            margin: 2em;
-            background: #f9f9f9;
-        }
-
-        h1 {
-            color: #2c3e50;
-        }
-
-        code,
-        pre {
-            background: #eee;
-            padding: 2px 4px;
-            border-radius: 3px;
-        }
-
-        .section {
-            margin-bottom: 2em;
-        }
-
-        .project-icon {
-            display: block;
-            margin: 0 auto 2em auto;
-            height: 200px;
-        }
-    </style>
+    <link rel="stylesheet" href="styles/styles.css">
 </head>
 
 <body>
@@ -44,10 +17,10 @@
             <p>A free, serverless REST API for managing highscores for multiple games. Easily deployable on Netlify.</p>
         </div>
     </center>
-    <div class="section" style="background:#fff;border-radius:8px;padding:1.5em;box-shadow:0 2px 8px #ddd;">
+    <div class="section card">
         <h2>🚀 Key Concepts</h2>
-        <table style="width:100%;border-collapse:collapse;">
-            <tr style="background:#f0f0f0;">
+        <table class="table-collapse">
+            <tr class="table-header-bg">
                 <th style="padding:8px;text-align:left;">Concept</th>
                 <th style="padding:8px;text-align:left;">Details</th>
             </tr>
@@ -70,10 +43,10 @@
         </table>
     </div>
 
-    <div class="section" style="background:#fff;border-radius:8px;padding:1.5em;box-shadow:0 2px 8px #ddd;">
+    <div class="section card">
         <h2>🔗 Endpoints</h2>
-        <table style="width:100%;border-collapse:collapse;">
-            <tr style="background:#f0f0f0;">
+        <table class="table-collapse">
+            <tr class="table-header-bg">
                 <th style="padding:8px;text-align:left;">Method</th>
                 <th style="padding:8px;text-align:left;">Purpose</th>
             </tr>
@@ -98,15 +71,15 @@
                 <td style="padding:8px;">Check if a score qualifies as a highscore</td>
             </tr>
         </table>
-        <p style="margin-top:1em;">All endpoints: <code>/.netlify/functions/scores</code><br>All requests require a
+        <p class="endpoints-note" style="margin-top:1em;">All endpoints: <code>/.netlify/functions/scores</code><br>All requests require a
             <code>gameId</code>.
         </p>
     </div>
 
-    <div class="section" style="background:#fff;border-radius:8px;padding:1.5em;box-shadow:0 2px 8px #ddd;">
+    <div class="section card">
         <h2>📋 API Examples</h2>
-        <table style="width:100%;border-collapse:collapse;">
-            <tr style="background:#f0f0f0;">
+        <table class="table-collapse">
+            <tr class="table-header-bg">
                 <th style="padding:8px;text-align:left;">Action</th>
                 <th style="padding:8px;text-align:left;">Example</th>
             </tr>
@@ -149,10 +122,10 @@
         </table>
     </div>
 
-    <div class="section" style="background:#fff;border-radius:8px;padding:1.5em;box-shadow:0 2px 8px #ddd;">
+    <div class="section card">
         <h2>📝 API Reference (Swagger Style)</h2>
-        <table style="width:100%;border-collapse:collapse;">
-            <tr style="background:#f0f0f0;">
+        <table class="table-collapse">
+            <tr class="table-header-bg">
                 <th style="padding:8px;text-align:left;">Endpoint</th>
                 <th style="padding:8px;text-align:left;">Description</th>
                 <th style="padding:8px;text-align:left;">Auth</th>
@@ -192,7 +165,7 @@
         </table>
     </div>
 
-    <div class="section" style="background:#fff;border-radius:8px;padding:1.5em;box-shadow:0 2px 8px #ddd;">
+    <div class="section card">
         <h2>🛠️ Deploy Instructions</h2>
         <ol>
             <li>Install Netlify CLI: <code>npm install -g netlify-cli</code></li>
@@ -200,11 +173,9 @@
             <li>Test locally: <code>netlify dev</code></li>
             <li>Deploy: <code>netlify deploy --prod</code></li>
         </ol>
-        <p>Your API will be available at <code>https://&lt;yoursite&gt;.netlify.app/.netlify/functions/scores</code></p>
+        <p>Your API will be available at <code>https://&lt;yoursite&gt;.netlify.app/.netlify/functions/scores</code>
+        </p>
     </div>
-    <footer>
-        <p>Project: Scorezilla &mdash; <a href="https://github.com/">GitHub</a></p>
-    </footer>
 </body>
 
 </html>
