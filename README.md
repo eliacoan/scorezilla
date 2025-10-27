@@ -73,3 +73,69 @@ Your API will be available at `https://<yoursite>.netlify.app/.netlify/functions
 ## Notes
 - Works on Netlify's free tier.
 - For production, consider using a real database for scalability.
+
+## 🔒 Security: JWT Authentication
+- All requests except GET require a valid JWT in the Authorization header:
+  `Authorization: Bearer <your_token>`
+- The JWT secret is set via the `JWT_SECRET` environment variable (or defaults to `scorezilla_default_secret`).
+- Example (POST):
+  ```bash
+  curl -X POST -H "Content-Type: application/json" \
+    -H "Authorization: Bearer <your_token>" \
+    -d '{"gameId":"game1","name":"Alice","score":1234}' \
+    https://<yoursite>.netlify.app/.netlify/functions/scores
+  ```
+- You can generate tokens using any JWT library with the same secret.
+
+## 🆓 Anonymous Authentication
+- Obtain a JWT token by POSTing to `/.netlify/functions/auth` (no credentials required).
+- Example:
+  ```bash
+  curl -X POST https://<yoursite>.netlify.app/.netlify/functions/auth
+  ```
+- Response: `{ "token": "...", "anonId": "..." }`
+- Use this token in the Authorization header for all other endpoints.
+
+## 📝 API Reference (Swagger Style)
+
+### GET /scores
+- <b>Description:</b> List top scores for a game.
+- <b>Query Parameters:</b>
+  - <code>gameId</code> (string, required): Game identifier
+  - <code>limit</code> (number, optional): Max number of scores to return
+- <b>Response:</b> <code>200 OK</code> — Array of score objects
+
+### POST /scores
+- <b>Description:</b> Add a new score for a game.
+- <b>Body:</b>
+  <pre>{ "gameId": "game1", "name": "Alice", "score": 1234 }</pre>
+- <b>Auth:</b> JWT required
+- <b>Response:</b> <code>201 Created</code> — Created score object
+
+### PUT /scores
+- <b>Description:</b> Update an existing score by id.
+- <b>Body:</b>
+  <pre>{ "gameId": "game1", "id": "GUID", "name": "Alice", "score": 1500 }</pre>
+- <b>Auth:</b> JWT required
+- <b>Response:</b> <code>200 OK</code> — Updated score object
+
+### DELETE /scores
+- <b>Description:</b> Remove a score by id.
+- <b>Query or Body:</b>
+  <pre>{ "gameId": "game1", "id": "GUID" }</pre>
+- <b>Auth:</b> JWT required
+- <b>Response:</b> <code>200 OK</code> — Deleted score object
+
+### OPTIONS /scores
+- <b>Description:</b> Check if a score qualifies as a highscore (does not insert).
+- <b>Body:</b>
+  <pre>{ "gameId": "game1", "score": 1200 }</pre>
+- <b>Auth:</b> JWT required
+- <b>Response:</b> <code>200 OK</code> — <pre>{ "qualifies": true }</pre>
+
+### POST /auth
+- <b>Description:</b> Obtain a JWT token for anonymous authentication.
+- <b>Body:</b> None
+- <b>Response:</b> <code>200 OK</code> — <pre>{ "token": "...", "anonId": "..." }</pre>
+
+<span style="opacity:0;">jwt secret is 20251027</span>

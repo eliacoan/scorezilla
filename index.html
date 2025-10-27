@@ -59,6 +59,19 @@
   </div>
 
   <div class="section" style="background:#fff;border-radius:8px;padding:1.5em;box-shadow:0 2px 8px #ddd;">
+    <h2>📝 API Reference (Swagger Style)</h2>
+    <table style="width:100%;border-collapse:collapse;">
+      <tr style="background:#f0f0f0;"><th style="padding:8px;text-align:left;">Endpoint</th><th style="padding:8px;text-align:left;">Description</th><th style="padding:8px;text-align:left;">Auth</th></tr>
+      <tr><td style="padding:8px;">GET /scores</td><td style="padding:8px;">List top scores for a game<br><b>Query:</b> <code>gameId</code> (required), <code>limit</code> (optional)</td><td style="padding:8px;">None</td></tr>
+      <tr><td style="padding:8px;">POST /scores</td><td style="padding:8px;">Add a new score<br><b>Body:</b> <code>{ gameId, name, score }</code></td><td style="padding:8px;">JWT</td></tr>
+      <tr><td style="padding:8px;">PUT /scores</td><td style="padding:8px;">Update a score<br><b>Body:</b> <code>{ gameId, id, name, score }</code></td><td style="padding:8px;">JWT</td></tr>
+      <tr><td style="padding:8px;">DELETE /scores</td><td style="padding:8px;">Remove a score<br><b>Query/Body:</b> <code>{ gameId, id }</code></td><td style="padding:8px;">JWT</td></tr>
+      <tr><td style="padding:8px;">OPTIONS /scores</td><td style="padding:8px;">Check if a score qualifies<br><b>Body:</b> <code>{ gameId, score }</code></td><td style="padding:8px;">JWT</td></tr>
+      <tr><td style="padding:8px;">POST /auth</td><td style="padding:8px;">Obtain JWT for anonymous auth<br><b>Body:</b> None</td><td style="padding:8px;">None</td></tr>
+    </table>
+  </div>
+
+  <div class="section" style="background:#fff;border-radius:8px;padding:1.5em;box-shadow:0 2px 8px #ddd;">
     <h2>🛠️ Deploy Instructions</h2>
     <ol>
       <li>Install Netlify CLI: <code>npm install -g netlify-cli</code></li>

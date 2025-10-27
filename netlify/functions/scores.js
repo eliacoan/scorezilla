@@ -3,9 +3,11 @@
 
 const fs = require('fs').promises;
 const path = require('path');
+const jwt = require('jsonwebtoken');
 
 const DATA_FILE = path.resolve(__dirname, '..', '..', 'data', 'scores.json');
 const MAX_ENTRIES = 100;
+const JWT_SECRET = process.env.JWT_SECRET || 'scorezilla_default_secret';
 
 async function readScores() {
   try {
@@ -32,6 +34,17 @@ function uuidv4() {
   });
 }
 
+function verifyJWT(event) {
+  const auth = event.headers && (event.headers.authorization || event.headers.Authorization);
+  if (!auth || !auth.startsWith('Bearer ')) return null;
+  const token = auth.slice(7);
+  try {
+    return jwt.verify(token, JWT_SECRET);
+  } catch (e) {
+    return null;
+  }
+}
+
 exports.handler = async function (event) {
   try {
     const method = event.httpMethod || event.method || 'GET';
@@ -52,6 +65,12 @@ exports.handler = async function (event) {
         headers: { 'Content-Type': 'application/json' },
         body: JSON.stringify(scores.slice(0, limit)),
       };
+    }
+
+    // Require JWT for all except GET
+    const user = verifyJWT(event);
+    if (!user) {
+      return { statusCode: 401, body: 'Unauthorized: missing or invalid token' };
     }
 
     if (method === 'POST') {
