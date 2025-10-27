@@ -25,6 +25,13 @@ async function writeScores(scoresByGame) {
   await fs.writeFile(DATA_FILE, JSON.stringify(scoresByGame, null, 2), 'utf8');
 }
 
+function uuidv4() {
+  return 'xxxxxxxx-xxxx-4xxx-yxxx-xxxxxxxxxxxx'.replace(/[xy]/g, function(c) {
+    const r = Math.random() * 16 | 0, v = c === 'x' ? r : (r & 0x3 | 0x8);
+    return v.toString(16);
+  });
+}
+
 exports.handler = async function (event) {
   try {
     const method = event.httpMethod || event.method || 'GET';
@@ -62,7 +69,7 @@ exports.handler = async function (event) {
       if (!name || Number.isNaN(score)) {
         return { statusCode: 400, body: 'Invalid payload: require name and numeric score' };
       }
-      const entry = { id: Date.now().toString(), name, score, createdAt: new Date().toISOString() };
+      const entry = { id: uuidv4(), name, score, createdAt: new Date().toISOString() };
       scoresByGame[gameId].push(entry);
       scoresByGame[gameId].sort((a, b) => b.score - a.score || new Date(a.createdAt) - new Date(b.createdAt));
       scoresByGame[gameId] = scoresByGame[gameId].slice(0, MAX_ENTRIES);
