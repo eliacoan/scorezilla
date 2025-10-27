@@ -1,88 +1,210 @@
 <!DOCTYPE html>
 <html lang="en">
+
 <head>
-  <meta charset="UTF-8">
-  <title>Scorezilla Highscore API</title>
-  <meta name="viewport" content="width=device-width, initial-scale=1">
-  <style>
-    body { font-family: Arial, sans-serif; margin: 2em; background: #f9f9f9; }
-    h1 { color: #2c3e50; }
-    code, pre { background: #eee; padding: 2px 4px; border-radius: 3px; }
-    .section { margin-bottom: 2em; }
-  </style>
+    <meta charset="UTF-8">
+    <title>Scorezilla Highscore API</title>
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <link rel="icon" type="image/png" href="imgs/icon.png">
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            margin: 2em;
+            background: #f9f9f9;
+        }
+
+        h1 {
+            color: #2c3e50;
+        }
+
+        code,
+        pre {
+            background: #eee;
+            padding: 2px 4px;
+            border-radius: 3px;
+        }
+
+        .section {
+            margin-bottom: 2em;
+        }
+
+        .project-icon {
+            display: block;
+            margin: 0 auto 2em auto;
+            height: 200px;
+        }
+    </style>
 </head>
+
 <body>
-  <h1>Scorezilla Highscore API</h1>
-  <div class="section">
-    <p>A free, serverless REST API for managing highscores for multiple games. Easily deployable on Netlify.</p>
-  </div>
-  <div class="section" style="background:#fff;border-radius:8px;padding:1.5em;box-shadow:0 2px 8px #ddd;">
-    <h2>🚀 Key Concepts</h2>
-    <table style="width:100%;border-collapse:collapse;">
-      <tr style="background:#f0f0f0;"><th style="padding:8px;text-align:left;">Concept</th><th style="padding:8px;text-align:left;">Details</th></tr>
-      <tr><td style="padding:8px;">Multiple Games 🎮</td><td style="padding:8px;">Each game has its own highscore list, identified by <code>gameId</code>.</td></tr>
-      <tr><td style="padding:8px;">Unique Score ID 🆔</td><td style="padding:8px;">Every score entry uses a globally unique identifier (GUID).</td></tr>
-      <tr><td style="padding:8px;">CRUD API ✍️</td><td style="padding:8px;">Create, Read, Update, Delete, and Check Qualification for scores.</td></tr>
-      <tr><td style="padding:8px;">Serverless & Free ☁️</td><td style="padding:8px;">Runs on Netlify's free tier, no server management needed.</td></tr>
-    </table>
-  </div>
+    <center>
+        <img src="imgs/icon.png" alt="Scorezilla Icon" class="project-icon" />
+        <h1>Scorezilla Highscore API</h1>
+        <div class="section">
+            <p>A free, serverless REST API for managing highscores for multiple games. Easily deployable on Netlify.</p>
+        </div>
+    </center>
+    <div class="section" style="background:#fff;border-radius:8px;padding:1.5em;box-shadow:0 2px 8px #ddd;">
+        <h2>🚀 Key Concepts</h2>
+        <table style="width:100%;border-collapse:collapse;">
+            <tr style="background:#f0f0f0;">
+                <th style="padding:8px;text-align:left;">Concept</th>
+                <th style="padding:8px;text-align:left;">Details</th>
+            </tr>
+            <tr>
+                <td style="padding:8px;">Multiple Games 🎮</td>
+                <td style="padding:8px;">Each game has its own highscore list, identified by <code>gameId</code>.</td>
+            </tr>
+            <tr>
+                <td style="padding:8px;">Unique Score ID 🆔</td>
+                <td style="padding:8px;">Every score entry uses a globally unique identifier (GUID).</td>
+            </tr>
+            <tr>
+                <td style="padding:8px;">CRUD API ✍️</td>
+                <td style="padding:8px;">Create, Read, Update, Delete, and Check Qualification for scores.</td>
+            </tr>
+            <tr>
+                <td style="padding:8px;">Serverless & Free ☁️</td>
+                <td style="padding:8px;">Runs on Netlify's free tier, no server management needed.</td>
+            </tr>
+        </table>
+    </div>
 
-  <div class="section" style="background:#fff;border-radius:8px;padding:1.5em;box-shadow:0 2px 8px #ddd;">
-    <h2>🔗 Endpoints</h2>
-    <table style="width:100%;border-collapse:collapse;">
-      <tr style="background:#f0f0f0;"><th style="padding:8px;text-align:left;">Method</th><th style="padding:8px;text-align:left;">Purpose</th></tr>
-      <tr><td style="padding:8px;"><b>GET</b></td><td style="padding:8px;">List top scores for a game</td></tr>
-      <tr><td style="padding:8px;"><b>POST</b></td><td style="padding:8px;">Add a new score</td></tr>
-      <tr><td style="padding:8px;"><b>PUT</b></td><td style="padding:8px;">Update an existing score</td></tr>
-      <tr><td style="padding:8px;"><b>DELETE</b></td><td style="padding:8px;">Remove a score</td></tr>
-      <tr><td style="padding:8px;"><b>OPTIONS</b></td><td style="padding:8px;">Check if a score qualifies as a highscore</td></tr>
-    </table>
-    <p style="margin-top:1em;">All endpoints: <code>/.netlify/functions/scores</code><br>All requests require a <code>gameId</code>.</p>
-  </div>
+    <div class="section" style="background:#fff;border-radius:8px;padding:1.5em;box-shadow:0 2px 8px #ddd;">
+        <h2>🔗 Endpoints</h2>
+        <table style="width:100%;border-collapse:collapse;">
+            <tr style="background:#f0f0f0;">
+                <th style="padding:8px;text-align:left;">Method</th>
+                <th style="padding:8px;text-align:left;">Purpose</th>
+            </tr>
+            <tr>
+                <td style="padding:8px;"><b>GET</b></td>
+                <td style="padding:8px;">List top scores for a game</td>
+            </tr>
+            <tr>
+                <td style="padding:8px;"><b>POST</b></td>
+                <td style="padding:8px;">Add a new score</td>
+            </tr>
+            <tr>
+                <td style="padding:8px;"><b>PUT</b></td>
+                <td style="padding:8px;">Update an existing score</td>
+            </tr>
+            <tr>
+                <td style="padding:8px;"><b>DELETE</b></td>
+                <td style="padding:8px;">Remove a score</td>
+            </tr>
+            <tr>
+                <td style="padding:8px;"><b>OPTIONS</b></td>
+                <td style="padding:8px;">Check if a score qualifies as a highscore</td>
+            </tr>
+        </table>
+        <p style="margin-top:1em;">All endpoints: <code>/.netlify/functions/scores</code><br>All requests require a
+            <code>gameId</code>.
+        </p>
+    </div>
 
-  <div class="section" style="background:#fff;border-radius:8px;padding:1.5em;box-shadow:0 2px 8px #ddd;">
-    <h2>📋 API Examples</h2>
-    <table style="width:100%;border-collapse:collapse;">
-      <tr style="background:#f0f0f0;"><th style="padding:8px;text-align:left;">Action</th><th style="padding:8px;text-align:left;">Example</th></tr>
-      <tr><td style="padding:8px;">GET (List Highscores)</td><td style="padding:8px;"><pre>curl "https://&lt;yoursite&gt;.netlify.app/.netlify/functions/scores?gameId=game1&limit=5"</pre></td></tr>
-      <tr><td style="padding:8px;">POST (Add Highscore)</td><td style="padding:8px;"><pre>curl -X POST -H "Content-Type: application/json" \
+    <div class="section" style="background:#fff;border-radius:8px;padding:1.5em;box-shadow:0 2px 8px #ddd;">
+        <h2>📋 API Examples</h2>
+        <table style="width:100%;border-collapse:collapse;">
+            <tr style="background:#f0f0f0;">
+                <th style="padding:8px;text-align:left;">Action</th>
+                <th style="padding:8px;text-align:left;">Example</th>
+            </tr>
+            <tr>
+                <td style="padding:8px;">GET (List Highscores)</td>
+                <td style="padding:8px;">
+                    <pre>curl "https://&lt;yoursite&gt;.netlify.app/.netlify/functions/scores?gameId=game1&limit=5"</pre>
+                </td>
+            </tr>
+            <tr>
+                <td style="padding:8px;">POST (Add Highscore)</td>
+                <td style="padding:8px;">
+                    <pre>curl -X POST -H "Content-Type: application/json" \
   -d '{"gameId":"game1","name":"Alice","score":1234}' \
-  https://&lt;yoursite&gt;.netlify.app/.netlify/functions/scores</pre></td></tr>
-      <tr><td style="padding:8px;">PUT (Update Highscore)</td><td style="padding:8px;"><pre>curl -X PUT -H "Content-Type: application/json" \
+  https://&lt;yoursite&gt;.netlify.app/.netlify/functions/scores</pre>
+                </td>
+            </tr>
+            <tr>
+                <td style="padding:8px;">PUT (Update Highscore)</td>
+                <td style="padding:8px;">
+                    <pre>curl -X PUT -H "Content-Type: application/json" \
   -d '{"gameId":"game1","id":"GUID","name":"Alice","score":1500}' \
-  https://&lt;yoursite&gt;.netlify.app/.netlify/functions/scores</pre></td></tr>
-      <tr><td style="padding:8px;">DELETE (Remove Highscore)</td><td style="padding:8px;"><pre>curl -X DELETE "https://&lt;yoursite&gt;.netlify.app/.netlify/functions/scores?gameId=game1&id=GUID"</pre></td></tr>
-      <tr><td style="padding:8px;">OPTIONS (Check Highscore Qualification)</td><td style="padding:8px;"><pre>curl -X OPTIONS -H "Content-Type: application/json" \
+  https://&lt;yoursite&gt;.netlify.app/.netlify/functions/scores</pre>
+                </td>
+            </tr>
+            <tr>
+                <td style="padding:8px;">DELETE (Remove Highscore)</td>
+                <td style="padding:8px;">
+                    <pre>curl -X DELETE "https://&lt;yoursite&gt;.netlify.app/.netlify/functions/scores?gameId=game1&id=GUID"</pre>
+                </td>
+            </tr>
+            <tr>
+                <td style="padding:8px;">OPTIONS (Check Highscore Qualification)</td>
+                <td style="padding:8px;">
+                    <pre>curl -X OPTIONS -H "Content-Type: application/json" \
   -d '{"gameId":"game1","score":1200}' \
-  https://&lt;yoursite&gt;.netlify.app/.netlify/functions/scores</pre></td></tr>
-    </table>
-  </div>
+  https://&lt;yoursite&gt;.netlify.app/.netlify/functions/scores</pre>
+                </td>
+            </tr>
+        </table>
+    </div>
 
-  <div class="section" style="background:#fff;border-radius:8px;padding:1.5em;box-shadow:0 2px 8px #ddd;">
-    <h2>📝 API Reference (Swagger Style)</h2>
-    <table style="width:100%;border-collapse:collapse;">
-      <tr style="background:#f0f0f0;"><th style="padding:8px;text-align:left;">Endpoint</th><th style="padding:8px;text-align:left;">Description</th><th style="padding:8px;text-align:left;">Auth</th></tr>
-      <tr><td style="padding:8px;">GET /scores</td><td style="padding:8px;">List top scores for a game<br><b>Query:</b> <code>gameId</code> (required), <code>limit</code> (optional)</td><td style="padding:8px;">None</td></tr>
-      <tr><td style="padding:8px;">POST /scores</td><td style="padding:8px;">Add a new score<br><b>Body:</b> <code>{ gameId, name, score }</code></td><td style="padding:8px;">JWT</td></tr>
-      <tr><td style="padding:8px;">PUT /scores</td><td style="padding:8px;">Update a score<br><b>Body:</b> <code>{ gameId, id, name, score }</code></td><td style="padding:8px;">JWT</td></tr>
-      <tr><td style="padding:8px;">DELETE /scores</td><td style="padding:8px;">Remove a score<br><b>Query/Body:</b> <code>{ gameId, id }</code></td><td style="padding:8px;">JWT</td></tr>
-      <tr><td style="padding:8px;">OPTIONS /scores</td><td style="padding:8px;">Check if a score qualifies<br><b>Body:</b> <code>{ gameId, score }</code></td><td style="padding:8px;">JWT</td></tr>
-      <tr><td style="padding:8px;">POST /auth</td><td style="padding:8px;">Obtain JWT for anonymous auth<br><b>Body:</b> None</td><td style="padding:8px;">None</td></tr>
-    </table>
-  </div>
+    <div class="section" style="background:#fff;border-radius:8px;padding:1.5em;box-shadow:0 2px 8px #ddd;">
+        <h2>📝 API Reference (Swagger Style)</h2>
+        <table style="width:100%;border-collapse:collapse;">
+            <tr style="background:#f0f0f0;">
+                <th style="padding:8px;text-align:left;">Endpoint</th>
+                <th style="padding:8px;text-align:left;">Description</th>
+                <th style="padding:8px;text-align:left;">Auth</th>
+            </tr>
+            <tr>
+                <td style="padding:8px;">GET /scores</td>
+                <td style="padding:8px;">List top scores for a game<br><b>Query:</b> <code>gameId</code> (required),
+                    <code>limit</code> (optional)
+                </td>
+                <td style="padding:8px;">None</td>
+            </tr>
+            <tr>
+                <td style="padding:8px;">POST /scores</td>
+                <td style="padding:8px;">Add a new score<br><b>Body:</b> <code>{ gameId, name, score }</code></td>
+                <td style="padding:8px;">JWT</td>
+            </tr>
+            <tr>
+                <td style="padding:8px;">PUT /scores</td>
+                <td style="padding:8px;">Update a score<br><b>Body:</b> <code>{ gameId, id, name, score }</code></td>
+                <td style="padding:8px;">JWT</td>
+            </tr>
+            <tr>
+                <td style="padding:8px;">DELETE /scores</td>
+                <td style="padding:8px;">Remove a score<br><b>Query/Body:</b> <code>{ gameId, id }</code></td>
+                <td style="padding:8px;">JWT</td>
+            </tr>
+            <tr>
+                <td style="padding:8px;">OPTIONS /scores</td>
+                <td style="padding:8px;">Check if a score qualifies<br><b>Body:</b> <code>{ gameId, score }</code></td>
+                <td style="padding:8px;">JWT</td>
+            </tr>
+            <tr>
+                <td style="padding:8px;">POST /auth</td>
+                <td style="padding:8px;">Obtain JWT for anonymous auth<br><b>Body:</b> None</td>
+                <td style="padding:8px;">None</td>
+            </tr>
+        </table>
+    </div>
 
-  <div class="section" style="background:#fff;border-radius:8px;padding:1.5em;box-shadow:0 2px 8px #ddd;">
-    <h2>🛠️ Deploy Instructions</h2>
-    <ol>
-      <li>Install Netlify CLI: <code>npm install -g netlify-cli</code></li>
-      <li>Link your project: <code>netlify init</code></li>
-      <li>Test locally: <code>netlify dev</code></li>
-      <li>Deploy: <code>netlify deploy --prod</code></li>
-    </ol>
-    <p>Your API will be available at <code>https://&lt;yoursite&gt;.netlify.app/.netlify/functions/scores</code></p>
-  </div>
-  <footer>
-    <p>Project: Scorezilla &mdash; <a href="https://github.com/">GitHub</a></p>
-  </footer>
+    <div class="section" style="background:#fff;border-radius:8px;padding:1.5em;box-shadow:0 2px 8px #ddd;">
+        <h2>🛠️ Deploy Instructions</h2>
+        <ol>
+            <li>Install Netlify CLI: <code>npm install -g netlify-cli</code></li>
+            <li>Link your project: <code>netlify init</code></li>
+            <li>Test locally: <code>netlify dev</code></li>
+            <li>Deploy: <code>netlify deploy --prod</code></li>
+        </ol>
+        <p>Your API will be available at <code>https://&lt;yoursite&gt;.netlify.app/.netlify/functions/scores</code></p>
+    </div>
+    <footer>
+        <p>Project: Scorezilla &mdash; <a href="https://github.com/">GitHub</a></p>
+    </footer>
 </body>
+
 </html>
