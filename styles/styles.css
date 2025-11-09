@@ -1,27 +1,27 @@
 body {
     font-family: Arial, sans-serif;
-    margin: 2em;
-    background: #f9f9f9;
+    margin: 0; /* main margin handled by .section now */
     min-height: 100vh;
-    margin: 0;
-    /* Animated gradient background */
-    background: linear-gradient(120deg, #09d1fe 0%, #d1d1d1 100%);
+    /* Animated yellow gradient background */
+    background: linear-gradient(120deg, #fff8e1 0%, #ffeb3b 35%, #fffde7 100%);
     background-size: 200% 200%;
     animation: flowingWater 8s ease-in-out infinite;
 }
 
+/* Headings tuned for better contrast on yellow background */
 h1 {
-    color: #2c3e50;
+    color: #8a6b00; /* dark mustard */
 }
 h2 {
-    color: #34495e;
-    border-bottom: 2px solid #ddd;
+    color: #7a5a00; /* slightly lighter dark mustard */
+    border-bottom: 2px solid rgba(122, 90, 0, 0.12);
     padding-bottom: 2em;
 }
 
+/* Make code / pre backgrounds warm and readable */
 code,
 pre {
-    background: #eee;
+    background: #fffde7; /* very light warm yellow */
     padding: 2px 4px;
     border-radius: 3px;
     display: inline-block;
@@ -29,58 +29,20 @@ pre {
     overflow-x: auto;
 }
 
-pre {
-    width: 100%;
-    display: block;
-    margin: 0 auto;
+/* Table header tint to emphasize yellow theme */
+.table-header-bg {
+    background: #fff9c4; /* pale yellow */
 }
 
-table {
-    width: 100%;
-    margin: 0 auto;
-    overflow-x: auto;
-}
-
-th,
-td {
-    box-sizing: border-box;
-}
-
-th:first-child,
-td:first-child {
-    width: 180px;
-    min-width: 180px;
-    max-width: 180px;
-}
-
-.section {
-    max-width: 90vw;
-    margin: 0 auto;
-    margin-bottom: 2em;
-}
-
+/* Subtle warm card shadow */
 .card {
     background: #fff;
     border-radius: 8px;
     padding: 1.5em;
-    box-shadow: 0 2px 8px #ddd;
+    box-shadow: 0 2px 8px rgba(255, 193, 7, 0.12);
 }
 
-.table-collapse {
-    border-collapse: collapse;
-    width: 100%;
-}
-
-.table-header-bg {
-    background: #f0f0f0;
-}
-
-.project-icon {
-    display: block;
-    margin: 0 auto 2em auto;
-    height: 200px;
-}
-
+/* Keep keyframes but no change needed */
 @keyframes flowingWater {
     0% {
         background-position: 0% 50%;
@@ -135,7 +97,8 @@ td:first-child {
         white-space: pre-wrap;
         word-break: break-word;
     }
-    .project-icon {
-        height: 120px;
-    }
 }
+
+    .project-icon {
+        height: 150px !important;
+    }
