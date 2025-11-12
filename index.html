@@ -19,7 +19,7 @@
     </center>
     <div class="section card">
         <h2>🚀 Key Concepts</h2>
-        <table class="table-collapse">
+        <table class="table-collapse" style="width:100%;border-collapse:collapse;">
             <tr class="table-header-bg">
                 <th style="padding:8px;text-align:left;">Concept</th>
                 <th style="padding:8px;text-align:left;">Details</th>
@@ -45,56 +45,105 @@
 
     <div class="section card">
         <h2>🔗 Endpoints</h2>
-        <table class="table-collapse">
+        <table class="table-collapse" style="width:100%;border-collapse:collapse;">
             <tr class="table-header-bg">
                 <th style="padding:8px;text-align:left;">Method</th>
                 <th style="padding:8px;text-align:left;">Purpose</th>
             </tr>
             <tr>
-                <td style="padding:8px;"><b>GET</b></td>
-                <td style="padding:8px;">List top scores for a game</td>
+                <td style="padding:8px;"><b>POST</b></td>
+                <td style="padding:8px;">Create a new account (returns id + secret) — <code>/.netlify/functions/newaccount</code>
+                </td>
             </tr>
             <tr>
                 <td style="padding:8px;"><b>POST</b></td>
-                <td style="padding:8px;">Add a new score</td>
+                <td style="padding:8px;">Obtain JWT using account id + secret — <code>/.netlify/functions/auth</code>
+                </td>
+            </tr>
+            <tr>
+                <td style="padding:8px;"><b>GET</b></td>
+                <td style="padding:8px;">List my games (requires Bearer token) — <code>/.netlify/functions/games</code>
+                </td>
+            </tr>
+            <tr>
+                <td style="padding:8px;"><b>POST</b></td>
+                <td style="padding:8px;">Create a game for authenticated account — <code>/.netlify/functions/creategame</code>
+                </td>
+            </tr>
+            <tr>
+                <td style="padding:8px;"><b>GET</b></td>
+                <td style="padding:8px;">List top scores for a game — <code>/.netlify/functions/scores</code></td>
+            </tr>
+            <tr>
+                <td style="padding:8px;"><b>POST</b></td>
+                <td style="padding:8px;">Add a new score (requires Bearer token) — <code>/.netlify/functions/scores</code>
+                </td>
             </tr>
             <tr>
                 <td style="padding:8px;"><b>PUT</b></td>
-                <td style="padding:8px;">Update an existing score</td>
+                <td style="padding:8px;">Update an existing score (requires Bearer token)</td>
             </tr>
             <tr>
                 <td style="padding:8px;"><b>DELETE</b></td>
-                <td style="padding:8px;">Remove a score</td>
+                <td style="padding:8px;">Remove a score (requires Bearer token)</td>
             </tr>
             <tr>
                 <td style="padding:8px;"><b>OPTIONS</b></td>
-                <td style="padding:8px;">Check if a score qualifies as a highscore</td>
+                <td style="padding:8px;">Check if a score qualifies as a highscore (requires Bearer token)</td>
             </tr>
         </table>
-        <p class="endpoints-note" style="margin-top:1em;">All endpoints: <code>/.netlify/functions/scores</code><br>All requests require a
-            <code>gameId</code>.
+        <p class="endpoints-note" style="margin-top:1em;">All scores endpoints: <code>/.netlify/functions/scores</code><br>Authentication: include <code>Authorization: Bearer &lt;token&gt;</code> for protected endpoints.
         </p>
     </div>
 
     <div class="section card">
         <h2>📋 API Examples</h2>
-        <table class="table-collapse">
+        <table class="table-collapse" style="width:100%;border-collapse:collapse;">
             <tr class="table-header-bg">
                 <th style="padding:8px;text-align:left;">Action</th>
                 <th style="padding:8px;text-align:left;">Example</th>
             </tr>
             <tr>
-                <td style="padding:8px;">GET (List Highscores)</td>
+                <td style="padding:8px;">Create Account</td>
                 <td style="padding:8px;">
-                    <pre>curl "https://&lt;yoursite&gt;.netlify.app/.netlify/functions/scores?gameId=game1&limit=5"</pre>
+                    <pre>curl -X POST https://&lt;yoursite&gt;.netlify.app/.netlify/functions/newaccount</pre>
+                </td>
+            </tr>
+            <tr>
+                <td style="padding:8px;">Obtain JWT</td>
+                <td style="padding:8px;">
+                    <pre>curl -X POST -H "Content-Type: application/json" \
+  -d '{"id":"ACCOUNT_ID","secret":"ACCOUNT_SECRET"}' \
+  https://&lt;yoursite&gt;.netlify.app/.netlify/functions/auth</pre>
+                </td>
+            </tr>
+            <tr>
+                <td style="padding:8px;">Create Game (authenticated)</td>
+                <td style="padding:8px;">
+                    <pre>curl -X POST -H "Authorization: Bearer &lt;TOKEN&gt;" -H "Content-Type: application/json" \
+  -d '{"shortcode":"game1","name":"Project Name"}' \
+  https://&lt;yoursite&gt;.netlify.app/.netlify/functions/creategame</pre>
+                </td>
+            </tr>
+            <tr>
+                <td style="padding:8px;">List My Games (authenticated)</td>
+                <td style="padding:8px;">
+                    <pre>curl -H "Authorization: Bearer &lt;TOKEN&gt;" \
+  "https://&lt;yoursite&gt;.netlify.app/.netlify/functions/games"</pre>
                 </td>
             </tr>
             <tr>
                 <td style="padding:8px;">POST (Add Highscore)</td>
                 <td style="padding:8px;">
-                    <pre>curl -X POST -H "Content-Type: application/json" \
+                    <pre>curl -X POST -H "Authorization: Bearer &lt;TOKEN&gt;" -H "Content-Type: application/json" \
   -d '{"gameId":"game1","name":"Alice","score":1234}' \
   https://&lt;yoursite&gt;.netlify.app/.netlify/functions/scores</pre>
+                </td>
+            </tr>
+            <tr>
+                <td style="padding:8px;">GET (List Highscores)</td>
+                <td style="padding:8px;">
+                    <pre>curl "https://&lt;yoursite&gt;.netlify.app/.netlify/functions/scores?gameId=game1&limit=5"</pre>
                 </td>
             </tr>
             <tr>
@@ -124,23 +173,42 @@
 
     <div class="section card">
         <h2>📝 API Reference (Swagger Style)</h2>
-        <table class="table-collapse">
+        <table class="table-collapse" style="width:100%;border-collapse:collapse;">
             <tr class="table-header-bg">
                 <th style="padding:8px;text-align:left;">Endpoint</th>
                 <th style="padding:8px;text-align:left;">Description</th>
                 <th style="padding:8px;text-align:left;">Auth</th>
             </tr>
             <tr>
-                <td style="padding:8px;">GET /scores</td>
-                <td style="padding:8px;">List top scores for a game<br><b>Query:</b> <code>gameId</code> (required),
-                    <code>limit</code> (optional)
+                <td style="padding:8px;">POST /newaccount</td>
+                <td style="padding:8px;">Create a new account — returns <code>{ id, secret }</code>. Save the secret securely.
                 </td>
                 <td style="padding:8px;">None</td>
             </tr>
             <tr>
+                <td style="padding:8px;">POST /auth</td>
+                <td style="padding:8px;">Exchange <code>{ id, secret }</code> for a JWT token (expires in 1 hour).</td>
+                <td style="padding:8px;">None</td>
+            </tr>
+            <tr>
+                <td style="padding:8px;">GET /games</td>
+                <td style="padding:8px;">List games owned by the authenticated account.</td>
+                <td style="padding:8px;">Bearer JWT</td>
+            </tr>
+            <tr>
+                <td style="padding:8px;">POST /creategame</td>
+                <td style="padding:8px;">Create a game for the authenticated account — body: <code>{ shortcode, name }</code>.</td>
+                <td style="padding:8px;">Bearer JWT</td>
+            </tr>
+            <tr>
+                <td style="padding:8px;">GET /scores</td>
+                <td style="padding:8px;">List top scores for a game (query: <code>gameId</code>, optional <code>limit</code>).</td>
+                <td style="padding:8px;">None</td>
+            </tr>
+            <tr>
                 <td style="padding:8px;">POST /scores</td>
-                <td style="padding:8px;">Add a new score<br><b>Body:</b> <code>{ gameId, name, score }</code></td>
-                <td style="padding:8px;">JWT</td>
+                <td style="padding:8px;">Add score for a game (requires JWT).</td>
+                <td style="padding:8px;">Bearer JWT</td>
             </tr>
             <tr>
                 <td style="padding:8px;">PUT /scores</td>

@@ -3,19 +3,23 @@ body {
     margin: 0; /* main margin handled by .section now */
     min-height: 100vh;
     /* Animated yellow gradient background */
-    background: linear-gradient(120deg, #fff8e1 0%, #ffeb3b 35%, #fffde7 100%);
-    background-size: 200% 200%;
+    background: radial-gradient(circle at center, #fff8e1 0%, #ffeb3b 35%, #fffde7 100%);
+    background-size: 600% 600%;
     animation: flowingWater 8s ease-in-out infinite;
 }
 
 /* Headings tuned for better contrast on yellow background */
 h1 {
     color: #8a6b00; /* dark mustard */
+    text-transform: uppercase;
+    letter-spacing: 3px;
 }
 h2 {
     color: #7a5a00; /* slightly lighter dark mustard */
     border-bottom: 2px solid rgba(122, 90, 0, 0.12);
     padding-bottom: 2em;
+    text-transform: uppercase;
+    letter-spacing: 3px;
 }
 
 /* Make code / pre backgrounds warm and readable */
@@ -31,7 +35,9 @@ pre {
 
 /* Table header tint to emphasize yellow theme */
 .table-header-bg {
-    background: #fff9c4; /* pale yellow */
+        background: #ffeb3b;
+    background-size: 600% 600%;
+    animation: flowingWater 8s ease-in-out infinite;
 }
 
 /* Subtle warm card shadow */
@@ -41,6 +47,11 @@ pre {
     padding: 1.5em;
     box-shadow: 0 2px 8px rgba(255, 193, 7, 0.12);
 }
+
+
+    .project-icon {
+        height: 250px;
+    }
 
 /* Keep keyframes but no change needed */
 @keyframes flowingWater {
@@ -77,11 +88,15 @@ pre {
     }
     th:first-child,
     td:first-child {
-        width: 110px;
-        min-width: 90px;
-        max-width: 120px;
-        font-size: 0.95em;
+        /* wider, flexible first column to fit labels and shortcodes */
+        width: 260px;
+        min-width: 220px;
+        max-width: 340px;
+        padding-right: 12px;
+        vertical-align: top;
+        white-space: normal;
         word-break: break-word;
+        overflow-wrap: anywhere;
     }
     table,
     .table-collapse {
@@ -89,6 +104,9 @@ pre {
         width: 100%;
         overflow-x: auto;
         display: block;
+        border-collapse: collapse;
+        width: 100% !important;
+        table-layout: fixed; /* ensure column widths are respected and consistent */
     }
     pre,
     code {
@@ -97,8 +115,36 @@ pre {
         white-space: pre-wrap;
         word-break: break-word;
     }
-}
 
     .project-icon {
         height: 150px !important;
+    }
+    table th:first-of-type,
+    table td:first-of-type,
+    .table-collapse tr th:first-of-type,
+    .table-collapse tr td:first-of-type {
+        /* enforced consistent width across all tables */
+        width: 150px !important;
+        min-width: 150px !important;
+        max-width: 150px !important;
+        padding-right: 12px;
+        vertical-align: top;
+        white-space: normal;
+        word-break: break-word;
+        overflow-wrap: anywhere;
+    }
+}
+    table th:first-of-type,
+    table td:first-of-type,
+    .table-collapse tr th:first-of-type,
+    .table-collapse tr td:first-of-type {
+        /* enforced consistent width across all tables */
+        width: 300px ;
+        min-width: 300px ;
+        max-width: 300px ;
+        padding-right: 12px;
+        vertical-align: top;
+        white-space: normal;
+        word-break: break-word;
+        overflow-wrap: anywhere;
     }

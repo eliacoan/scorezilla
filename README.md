@@ -2,6 +2,16 @@
 
 A serverless REST API for managing highscores for multiple games, deployable on Netlify.
 
+## New features / quick overview
+
+- Account creation: POST `/.netlify/functions/newaccount`  
+  - Returns `{ id, secret }`. Save the secret securely — it is shown only once.
+- Authentication: POST `/.netlify/functions/auth` with `{ id, secret }`  
+  - Returns a signed JWT token (expires in 1 hour).
+- Games:
+  - Create game (authenticated): POST `/.netlify/functions/creategame` with `{ shortcode, name }`. Stored with `id` and `accountId`.
+  - List my games (authenticated): GET `/.netlify/functions/games` — returns games owned by the account in the token.
+
 ## Endpoints
 
 All endpoints: `/.netlify/functions/scores`
@@ -70,9 +80,21 @@ All requests require a `gameId` (query or body).
 
 Your API will be available at `https://<yoursite>.netlify.app/.netlify/functions/scores`
 
+## Authentication flow
+
+1. Create an account:
+   - POST `/.netlify/functions/newaccount`
+   - Save the returned `id` and `secret`.
+2. Obtain a JWT:
+   - POST `/.netlify/functions/auth` with `{ id, secret }`
+   - Receive `{ token }` — include as `Authorization: Bearer <token>` for protected endpoints.
+3. Create/list games using the token.
+
 ## Notes
 - Works on Netlify's free tier.
 - For production, consider using a real database for scalability.
+- Persistent storage in `data/*.json` is suitable for local testing only. For production use a proper database and secure `SECRET_KEY` env var.
+- Tokens are HMAC-SHA256 signed with `SECRET_KEY` (fallback to a dev key if not set).
 
 ## 🔒 Security: JWT Authentication
 - All requests except GET require a valid JWT in the Authorization header:
@@ -137,3 +159,19 @@ Your API will be available at `https://<yoursite>.netlify.app/.netlify/functions
 - <b>Description:</b> Obtain a JWT token for anonymous authentication.
 - <b>Body:</b> None
 - <b>Response:</b> <code>200 OK</code> — <pre>{ "token": "...", "anonId": "..." }</pre>
+
+### POST /newaccount
+- <b>Description:</b> Create a new account.
+- <b>Body:</b> None
+- <b>Response:</b> <code>200 OK</code> — <pre>{ "id": "...", "secret": "..." }</pre>
+
+### POST /creategame
+- <b>Description:</b> Create a new game (authenticated).
+- <b>Body:</b>
+  <pre>{ "shortcode": "abc", "name": "My Game" }</pre>
+- <b>Auth:</b> JWT required
+- <b>Response:</b> <code>201 Created</code> — Game object with `id` and `accountId`
+
+### GET /games
+- <b>Description:</b> List games owned by the account in the token (authenticated).
+- <b>Response:</b> <code>200 OK</code> — Array of game objects
