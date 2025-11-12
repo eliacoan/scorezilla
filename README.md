@@ -175,3 +175,9 @@ Your API will be available at `https://<yoursite>.netlify.app/.netlify/functions
 ### GET /games
 - <b>Description:</b> List games owned by the account in the token (authenticated).
 - <b>Response:</b> <code>200 OK</code> — Array of game objects
+
+## License
+
+This project is licensed under the MIT License. See the full license here:
+- Online: https://opensource.org/licenses/MIT
+- Local: ./LICENSE (add a LICENSE file with the MIT text if you want a local copy)
